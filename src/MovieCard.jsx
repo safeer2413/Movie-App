@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ModelPopup from "./ModelPopup";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, theme }) => {
   const [showModal, setShowModal] = useState(false);
 
   const imgURL = movie.poster_path
@@ -10,27 +10,27 @@ const MovieCard = ({ movie }) => {
 
   return (
     <>
-      {/* 🎞️ Movie Card */}
       <div
         onClick={() => setShowModal(true)}
-        className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer"
+        className={`
+          rounded-lg overflow-hidden shadow-md hover:scale-105 hover:shadow-lg 
+          transition-all duration-300 cursor-pointer border
+          ${theme === "dark"
+            ? "bg-gray-900 border-amber-100 text-white"
+            : "bg-amber-100 border-transparent text-black"}
+        `}
       >
-        <img
-          src={imgURL}
-          alt={movie.title}
-          className="w-full h-80 object-cover"
-        />
+        <img src={imgURL} alt={movie.title} className="w-full h-80 object-cover" />
         <div className="p-3">
           <h3 className="font-semibold text-lg truncate">{movie.title}</h3>
-          <p className="text-sm mt-1 text-gray-600 dark:text-gray-400">
-            ⭐ {movie.vote_average.toFixed(1)} | 📅 {movie.release_date.slice(0, 4) || "N/A"}
+          <p className="text-sm mt-1 opacity-80">
+            ⭐ {movie.vote_average.toFixed(1)} | 📅 {movie.release_date?.slice(0, 4) || "N/A"}
           </p>
         </div>
       </div>
 
-      {/* 🎬 Modal Popup */}
       {showModal && (
-        <ModelPopup state={{movie, imgURL, setShowModal}}/>
+        <ModelPopup state={{ movie, imgURL, setShowModal }} theme={theme} />
       )}
     </>
   );

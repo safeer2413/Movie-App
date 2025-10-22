@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-function ModelPopup({ state }) {
-
-    const { movie, setShowModal, imgURL } = state
+function ModelPopup({ state, theme }) {
+    const { movie, setShowModal, imgURL } = state;
     const [trailerUrl, setTrailerUrl] = useState(null);
     const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -22,56 +21,52 @@ function ModelPopup({ state }) {
     }, [movie]);
 
     return (
-
         <div
-            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
             onClick={() => setShowModal(false)}
         >
             <div
-                className="bg-white dark:bg-gray-900 rounded-lg overflow-y-auto w-11/12 md:w-2/3 lg:w-1/2 shadow-xl max-h-[95vh]"
                 onClick={(e) => e.stopPropagation()}
+                className={`
+          rounded-lg overflow-y-auto w-11/12 md:w-2/3 lg:w-1/2 shadow-xl max-h-[95vh] border
+          ${theme === "dark"
+                        ? "bg-gray-900 border-amber-100 text-white"
+                        : "bg-amber-100 border-transparent text-black"}
+        `}
             >
-
-                <img
-                    src={imgURL}
-                    alt={movie.title}
-                    className="w-full h-96 object-cover"
-                />
+                <img src={imgURL} alt={movie.title} className="w-full h-96 object-cover" />
                 <div className="p-5">
                     <h2 className="text-2xl font-bold mb-2">{movie.title}</h2>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+                    <p className="text-sm mb-4 leading-relaxed opacity-90">
                         {movie.overview || "No description available."}
                     </p>
-                    <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
+                    <div className="flex justify-between text-sm opacity-80 mb-4">
                         <p>⭐ {movie.vote_average.toFixed(1)}</p>
-                        <p>📅 {movie.release_date ? movie.release_date.slice(0, 4) : "N/A"}</p>
+                        <p>📅 {movie.release_date?.slice(0, 4) || "N/A"}</p>
                         <p>🎭 {movie.original_language?.toUpperCase()}</p>
                     </div>
 
-                    <div className="flex gap-3 mt-5">
-                        {trailerUrl && (
-                            <a
-                                href={trailerUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md"
-                            >
-                                ▶️ Play Trailer
-                            </a>
-                        )}
-                    </div>
-
+                    {trailerUrl && (
+                        <a
+                            href={trailerUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md mr-3"
+                        >
+                            ▶️ Play Trailer
+                        </a>
+                    )}
 
                     <button
                         onClick={() => setShowModal(false)}
-                        className="mt-5 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-md"
+                        className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-md"
                     >
                         Close ✖
                     </button>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default ModelPopup
+export default ModelPopup;

@@ -20,8 +20,8 @@ function LanguageSection({ state }) {
                         key={lang.code}
                         onClick={() => setLanguage(lang.code)}
                         className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${language === lang.code
-                            ? "bg-blue-600 text-white shadow-md"
-                            : "bg-white dark:bg-gray-800 dark:text-gray-200 border border-gray-400 hover:bg-blue-100 dark:hover:bg-gray-700"
+                            ? "bg-yellow-700 text-white shadow-md"
+                            : "bg-amber-200 dark:bg-gray-800 dark:text-gray-200 border border-gray-400 hover:bg-yellow-500 dark:hover:bg-gray-700"
                             }`}
                     >
                         {lang.label}

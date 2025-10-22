@@ -11,7 +11,7 @@ function Header({ state }) {
             <div className="flex items-center gap-4">
                 <button
                     onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                    className={`relative w-14 h-8 flex items-center rounded-full transition-all duration-500 ${theme === "light" ? "bg-gray-300" : "bg-yellow-400"
+                    className={`relative w-14 h-8 flex items-center rounded-full transition-all duration-500 ${theme === "light" ? "bg-amber-100" : "bg-yellow-400"
                         }`}
                 >
                     <span

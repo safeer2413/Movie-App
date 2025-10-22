@@ -6,16 +6,14 @@ import SkeletonButton from "./SkeletonButton";
 import NoMoviesFound from "./NoMoviesFound";
 import LanguageSection from "./LanguageSection";
 import SearchBar from "./SearchBar";
-import Header from "./Header";
 
 const App = () => {
-
   const BASE_URL = "https://api.themoviedb.org/3";
   const API_KEY = import.meta.env.VITE_API_KEY;
 
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [language, setLanguage] = useState("en");
   const [loading, setLoading] = useState(false);
 
@@ -47,42 +45,74 @@ const App = () => {
   useEffect(() => {
     if (theme === "dark") document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", theme);
   }, [theme]);
+
 
   return (
     <div
       className={`min-h-screen flex flex-col items-center px-4 py-6 ${theme === "dark"
         ? "bg-gradient-to-r from-gray-900 to-gray-800 text-white"
-        : "bg-gradient-to-r from-blue-100 to-indigo-200 text-gray-900"
+        : "bg-gradient-to-r from-amber-300 to-orange-400 text-gray-900"
         }`}
     >
-      {/* Header */}
-      <div><Header state={{ theme, setTheme }} /></div>
+      {/* 🔹 Header Section */}
+      <header className="w-full max-w-6xl mb-4 border rounded-lg p-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
-      {/* Search */}
-      <div><SearchBar state={{ searchTerm, setSearchTerm, searchMovies }} /></div>
+          {/* Left: Title */}
+          <h1 className="text-3xl md:text-4xl font-extrabold font-['Roboto_Slab'] bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-700">
+            🎬 Movie <span className="text-blue-800">World</span>
+          </h1>
 
-      {/* Language Section */}
-      <div className="flex flex-wrap justify-center text-gray-800 gap-3 mt-4">
+          {/* Center: Search bar (only below on xs, inline on sm+) */}
+          <div className="order-last sm:order-none w-full sm:flex-1 sm:mx-6">
+            <div className="w-full flex justify-center sm:justify-center">
+              <div className="w-full sm:w-80 md:w-96">
+                <SearchBar state={{ searchTerm, setSearchTerm, searchMovies }} />
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Theme toggle */}
+          <div className="flex items-center justify-end gap-2">
+            <span className="text-sm font-semibold">
+              {theme === "light" ? "🌞 Light" : "🌙 Dark"}
+            </span>
+            <button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className={`relative w-14 h-6 flex items-center rounded-full transition-all duration-500 ${theme === "light" ? "bg-amber-700" : "bg-yellow-400"
+                }`}
+            >
+              <span
+                className={`absolute w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-500 ${theme === "light" ? "translate-x-1" : "translate-x-7"
+                  }`}
+              ></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+
+      {/* 🔹 Language Section */}
+      <div className="flex flex-wrap justify-center text-gray-800 gap-3 mt-1">
         {loading
           ? Array.from({ length: 8 }).map((_, i) => <SkeletonButton key={i} />)
           : movies.length > 0
             ? <LanguageSection state={{ loading, language, setLanguage }} />
-            : ""
-        }
+            : ""}
       </div>
 
-      {/* Movie Card */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5 w-full max-w-6xl">
+      {/* 🔹 Movie Cards Section */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-7 w-full max-w-6xl">
         {loading
           ? Array.from({ length: 8 }).map((_, i) => <MovieSkeleton key={i} />)
           : movies.length > 0
-            ? movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-            : <NoMoviesFound />
-        }
+            ? movies.map((movie) => <MovieCard key={movie.id} movie={movie} theme={theme} />)
+            : <NoMoviesFound />}
       </div>
 
-      {/* Footer */}
+      {/* 🔹 Footer */}
       <footer className="mt-10 text-sm opacity-70">
         © 2025 MovieWorld | Built with ❤️ React + TMDb API
       </footer>

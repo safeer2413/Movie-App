@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 function SearchBar({ state }) {
-
     const { searchTerm, setSearchTerm, searchMovies } = state;
+
     return (
-        <div className="flex mb-6 w-full max-w-3xl">
+        <div className="flex h-10 w-full">
             <input
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -14,12 +14,12 @@ function SearchBar({ state }) {
             />
             <button
                 onClick={() => searchMovies(searchTerm)}
-                className="bg-blue-600 text-white px-5 rounded-r-md hover:bg-blue-700 transition-all"
+                className="bg-amber-500 text-white px-5 rounded-r-md hover:bg-yellow-600 transition-all"
             >
                 🔍
             </button>
         </div>
-    )
+    );
 }
 
-export default SearchBar
+export default SearchBar;
