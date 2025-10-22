@@ -14,7 +14,7 @@ function SearchBar({ state }) {
             />
             <button
                 onClick={() => searchMovies(searchTerm)}
-                className="bg-amber-500 text-white px-5 rounded-r-md hover:bg-yellow-600 transition-all"
+                className="bg-amber-700 text-white px-5 rounded-r-md hover:bg-yellow-600 transition-all"
             >
                 🔍
             </button>

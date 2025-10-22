@@ -3,7 +3,7 @@ import SkeletonButton from './SkeletonButton'
 
 function LanguageSection({ state }) {
     const { loading, language, setLanguage } = state;
-    
+
     return (
         <div className="flex flex-wrap justify-center text-gray-800 gap-3 mt-4">
             {loading

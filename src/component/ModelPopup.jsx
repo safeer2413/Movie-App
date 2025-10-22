@@ -16,6 +16,20 @@ function ModelPopup({ state, theme }) {
         if (trailer) setTrailerUrl(`https://www.youtube.com/watch?v=${trailer.key}`);
     };
 
+    const languageNames = {
+        en: "English",
+        hi: "Hindi",
+        ml: "Malayalam",
+        ta: "Tamil",
+        te: "Telugu",
+        kn: "Kannada",
+        fr: "French",
+        es: "Spanish",
+        ja: "Japanese",
+        ko: "Korean",
+        zh: "Chinese",
+    };
+
     useEffect(() => {
         fetchTrailer(movie.id);
     }, [movie]);
@@ -37,13 +51,14 @@ function ModelPopup({ state, theme }) {
                 <img src={imgURL} alt={movie.title} className="w-full h-96 object-cover" />
                 <div className="p-5">
                     <h2 className="text-2xl font-bold mb-2">{movie.title}</h2>
-                    <p className="text-sm mb-4 leading-relaxed opacity-90">
+                    <p className="text-sm mb-4 leading-relaxed italic opacity-60">
                         {movie.overview || "No description available."}
                     </p>
                     <div className="flex justify-between text-sm opacity-80 mb-4">
                         <p>⭐ {movie.vote_average.toFixed(1)}</p>
                         <p>📅 {movie.release_date?.slice(0, 4) || "N/A"}</p>
-                        <p>🎭 {movie.original_language?.toUpperCase()}</p>
+                        <p>🎭 {languageNames[movie.original_language] || movie.original_language?.toUpperCase()}</p>
+
                     </div>
 
                     {trailerUrl && (

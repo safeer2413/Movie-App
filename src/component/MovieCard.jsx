@@ -20,7 +20,7 @@ const MovieCard = ({ movie, theme }) => {
             : "bg-amber-100 border-transparent text-black"}
         `}
       >
-        <img src={imgURL} alt={movie.title} className="w-full h-80 object-cover" />
+        <img src={imgURL} alt={movie.title} className="w-full object-cover" />
         <div className="p-3">
           <h3 className="font-semibold text-lg truncate">{movie.title}</h3>
           <p className="text-sm mt-1 opacity-80">
