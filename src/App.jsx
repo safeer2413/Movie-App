@@ -108,7 +108,7 @@ const App = () => {
       </div>
 
       {/* 🔹 Footer */}
-      <footer className="mt-10 text-sm opacity-70">
+      <footer className="mt-10 p-5 text-sm italic opacity-70">
         © 2025 MovieWorld | Built with ❤️ React + TMDb API
       </footer>
     </div>
