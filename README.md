@@ -60,16 +60,16 @@ Movie-App/
 
 ## 📸 Screenshots 🌟
 
-![Home Page](./screenshots/Home-Page.png)  
+![Home Page](/screenshots/Home-Page.png)  
 *🎬 Beautiful movie discovery homepage.*
 
-![Dark Mode](./screenshots/Dark-Mode.png)  
+![Dark Mode](/screenshots/Dark-Model.png)  
 *🌙 Elegant dark theme UI.*
 
-![No Movies Found](./screenshots/No-Movies-Found.png)  
+![No Movies Found](/screenshots/No-Movies-Found.png)  
 *🚫 Friendly “No Movies Found” screen.*
 
-![Mobile-size-screen](./screenshots/Mobile-size-home.png)  
+![Mobile-size-screen](/screenshots/Mobile-size-home.png)  
 *📱 Mobile view – fully responsive dark theme layout.*
 
 ---
