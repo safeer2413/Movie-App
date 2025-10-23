@@ -32,6 +32,7 @@ Movie-App/
 ├── public/
 │   └── screenshots/
 │       ├── Dark-Mode.png
+│       ├── Download-option.pgn
 │       ├── Home-Page.png
 │       ├── Mobile-size-dr-md.png
 │       ├── Mobile-size-home.png
@@ -71,6 +72,9 @@ Movie-App/
 
 ![Mobile-size-screen](/screenshots/Mobile-size-home.png)  
 *📱 Mobile view – fully responsive dark theme layout.*
+
+![Movie Modal Popup](/screenshots/Download-option.png)  
+*⬇️ Download and ▶️ Play Trailer buttons included in a responsive modal popup. Users can download the movie directly or watch the trailer without leaving the app.*
 
 ---
 

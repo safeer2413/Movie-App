@@ -34,6 +34,17 @@ function ModelPopup({ state, theme }) {
         fetchTrailer(movie.id);
     }, [movie]);
 
+    // ✅ Download function for Web
+    const downloadFile = (url, filename) => {
+        const link = document.createElement("a");
+        link.href = url; // movie file URL
+        link.download = filename; // saved file name
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+
     return (
         <div
             className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
@@ -54,30 +65,40 @@ function ModelPopup({ state, theme }) {
                     <p className="text-sm mb-4 leading-relaxed italic opacity-60">
                         {movie.overview || "No description available."}
                     </p>
-                    <div className="flex justify-between text-sm opacity-80 mb-4">
+                    <div className="flex justify-between text-sm opacity-80 font-bold mb-4">
                         <p>⭐ {movie.vote_average.toFixed(1)}</p>
                         <p>📅 {movie.release_date?.slice(0, 4) || "N/A"}</p>
                         <p>🎭 {languageNames[movie.original_language] || movie.original_language?.toUpperCase()}</p>
 
                     </div>
 
-                    {trailerUrl && (
-                        <a
-                            href={trailerUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md mr-3"
-                        >
-                            ▶️ Play Trailer
-                        </a>
-                    )}
+                    <div className="flex justify-around font-bold">
+                        {trailerUrl && (
+                            <a
+                                href={trailerUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md mr-3"
+                            >
+                                ▶️ Play Trailer
+                            </a>
+                        )}
 
-                    <button
-                        onClick={() => setShowModal(false)}
-                        className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-md"
-                    >
-                        Close ✖
-                    </button>
+                        <button
+                            onClick={() => downloadFile(movie.download_url, `${movie.title}.mp4`)}
+                            className="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 mr-3"
+                        >
+                            ⬇️ Download Movie
+                        </button>
+
+                        <button
+                            onClick={() => setShowModal(false)}
+                            className="bg-red-600 hover:bg-red-700 gap- text-white px-5 py-2 rounded-md"
+                        >
+                            Close ✖
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>
