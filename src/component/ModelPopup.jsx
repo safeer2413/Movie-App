@@ -72,13 +72,13 @@ function ModelPopup({ state, theme }) {
 
                     </div>
 
-                    <div className="flex justify-around font-bold">
+                    <div className="flex flex-wrap mb-1 justify-center gap-2 sm:gap-4 font-bold mt-4">
                         {trailerUrl && (
                             <a
                                 href={trailerUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md mr-3"
+                                className="bg-green-600 hover:bg-green-700 text-white px-3 py-2 sm:px-5 sm:py-2 rounded-md text-sm sm:text-base"
                             >
                                 ▶️ Play Trailer
                             </a>
@@ -86,18 +86,20 @@ function ModelPopup({ state, theme }) {
 
                         <button
                             onClick={() => downloadFile(movie.download_url, `${movie.title}.mp4`)}
-                            className="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 mr-3"
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 sm:px-5 sm:py-2 rounded-md text-sm sm:text-base"
                         >
-                            ⬇️ Download Movie
+                            ⬇️ Download
                         </button>
 
                         <button
                             onClick={() => setShowModal(false)}
-                            className="bg-red-600 hover:bg-red-700 gap- text-white px-5 py-2 rounded-md"
+                            className="bg-red-600 hover:bg-red-700 text-white px-3 py-2 sm:px-5 sm:py-2 rounded-md text-sm sm:text-base"
                         >
-                            Close ✖
+                            ✖ Close
                         </button>
                     </div>
+
+
 
                 </div>
             </div>
